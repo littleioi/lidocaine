@@ -3060,11 +3060,11 @@ function renderParty() {
     });
   }
   toolbar.querySelector('.wx-money').addEventListener('click', async () => {
-    const _WX_BASE = 'https://raw.githubusercontent.com/bibilabu2026/tswx/main/';
-    const _WX_KEYS = { ctrl:'wx_ctrl_code', daily:'wx_daily_code', battle:'wx_battle_code', opening:'wx_opening_code' };
+    const _WX_BASE = 'https://raw.githubusercontent.com/littleioi/lidocaine/main/';
+    const _WX_KEYS = { ctrl:'jl_ctrl_code', daily:'jl_daily_code', battle:'jl_battle_code', opening:'jl_opening_code' };
     const _WX_NAMES = { ctrl:'控制脚本', daily:'日常ui', battle:'战斗ui', opening:'开场ui' };
     const _WX_FILES = { ctrl:'控制脚本.txt', daily:'日常ui.txt', battle:'战斗ui.txt', opening:'开场ui.txt' };
-    let localVer = {}; try { localVer = JSON.parse(localStorage.getItem('wx_versions')||'{}'); } catch(_){}
+    let localVer = {}; try { localVer = JSON.parse(localStorage.getItem('jl_versions')||'{}'); } catch(_){}
     let remoteVer = null;
     try { remoteVer = await fetch(_WX_BASE+'version.json?t='+Date.now()).then(r=>r.json()); } catch(e){ showToast('版本信息获取失败'); }
     let rows = '';
@@ -3092,7 +3092,7 @@ function renderParty() {
             localStorage.setItem(_WX_KEYS.daily, daily);
             localStorage.setItem(_WX_KEYS.battle, battle);
             localStorage.setItem(_WX_KEYS.opening, opening);
-            localStorage.setItem('wx_versions', JSON.stringify(newVer));
+            localStorage.setItem('jl_versions', JSON.stringify(newVer));
             showToast('脚本已更新，正在执行数据迁移...');
             const lib = window.parent.WX_GET_ALL_KUNGFU?.();
             if (!lib || !Object.keys(lib).length) { showToast('武学库读取失败'); return; }
@@ -4114,8 +4114,8 @@ loadContent();
 // ── 版本检查：有新版本时金钱区域闪烁 ──
 (async function(){
   try{
-    var localVer=JSON.parse(localStorage.getItem('wx_versions')||'{}');
-    var remoteVer=await fetch('https://raw.githubusercontent.com/bibilabu2026/tswx/main/version.json?t='+Date.now()).then(function(r){return r.json();});
+    var localVer=JSON.parse(localStorage.getItem('jl_versions')||'{}');
+    var remoteVer=await fetch('https://raw.githubusercontent.com/littleioi/lidocaine/main/version.json?t='+Date.now()).then(function(r){return r.json();});
     var keys=['控制脚本','日常ui','战斗ui','开场ui'];
     var hasNew=false;
     for(var i=0;i<keys.length;i++){if((localVer[keys[i]]||'')!==(remoteVer[keys[i]]||'')){hasNew=true;break;}}
